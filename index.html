@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my moon?</title>
+    <link rel="stylesheet" href="final.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #02162a, #1e1870);
+            color: #eee;
+            font-family: 'Bubblegum Sans', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Keep this initially hidden for larger screens */
+            position: relative;
+        }
+
+        /* Allow scrolling on smaller screens */
+        @media (max-width: 768px) {
+            body {
+                overflow: auto; /* Allow scrolling on smaller screens */
+            }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+            width: 650px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .moon {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            position: absolute;
+            left: -3%;
+            top: 10%;
+            transform: translateY(-50%);
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+            animation: floatMoon 6s ease-in-out infinite;
+        }
+
+        @keyframes floatMoon {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-10px); }
+        }
+
+        .content {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 5s ease-in-out;
+            width: 600px;
+            font-family: josefin sans;
+            font-weight: bold;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #f0f0f0;
+        }
+
+        #stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            animation: moveStars 1000s linear infinite;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0.9;
+            animation: twinkle 0.7s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { 
+                opacity: 0.8;
+                transform: scale(1); 
+            }
+            20%, 80% { 
+                opacity: 0.2;
+                transform: scale(0.8); 
+            }
+            50% { 
+                opacity: 0.4;
+                transform: scale(1.2); 
+            }
+        }
+
+        @keyframes moveStars {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .cat {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            right: 5%;
+            top: 65%;
+            transform: translateY(-50%);
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+            animation: floatCat 5s ease-in-out infinite;
+        }
+
+        @keyframes floatCat {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-5px); }
+        }
+
+        .cloud {
+            width: 50px;
+            position: fixed;
+            right: 28%;
+            top: 20%;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+            animation: floatCloud 8s ease-in-out infinite;
+        }
+
+        @keyframes floatCloud {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-10px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .moon {
+                width: 100px;
+                height: 100px;
+                left: 2%;
+                top: 5%;
+            }
+
+            .cat {
+                width: 200px;
+                height: 200px;
+                right: 5%;
+                top: 60%;
+            }
+
+            .cloud {
+                width: 30px;
+                right: 15%;
+                top: 15%;
+            }
+
+            .content {
+                width: 100%;
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+
+            #stars {
+                animation: moveStars 500s linear infinite; /* Slow down star movement */
+            }
+
+            .star {
+                width: 1px;
+                height: 1px;
+            }
+        }
+
+        /* Make sure content is scrollable on small screens */
+        @media (max-width: 700px), (max-height: 350px) {
+            body {
+                overflow: auto; /* Allow scrolling */
+            }
+
+            .container {
+                width: 90%;
+                max-width: 90%;
+                padding: 10px;
+            }
+
+            .moon {
+                width: 80px;
+                height: 80px;
+                left: 5%;
+                top: 5%;
+            }
+
+            .cat {
+                width: 200px;
+                height: 200px;
+                right: 5%;
+                top: 60%;
+            }
+
+            .cloud {
+                width: 30px;
+                right: 15%;
+                top: 15%;
+            }
+
+            .content {
+                width: 100%;
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+
+            #stars {
+                animation: moveStars 500s linear infinite;
+            }
+
+            .star {
+                width: 1px;
+                height: 1px;
+            }
+        }
+        /* Adjustments for Redmi 9 Power & Redmi 9 Prime (1080px width) */
+@media (max-width: 1080px) {
+    .container {
+        width: 90%;
+        max-width: 100%;
+    }
+
+    .moon {
+        width: 100px;
+        height: 100px;
+        left: 5%;
+        top: 8%;
+    }
+
+    .cat {
+        width: 250px;
+        height: 250px;
+        right: 5%;
+        top: 65%;
+    }
+
+    .cloud {
+        width: 40px;
+        right: 20%;
+        top: 15%;
+    }
+
+    .content {
+        width: 95%;
+        font-size: 0.9rem;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+    #stars {
+        animation: moveStars 600s linear infinite; /* Slow down movement */
+    }
+
+    .star {
+        width: 2px;
+        height: 2px;
+    }
+}
+
+/* Further optimize for very small screens */
+@media (max-width: 720px) {
+    .moon {
+        width: 80px;
+        height: 80px;
+        left: 3%;
+        top: 6%;
+    }
+
+    .cat {
+        width: 200px;
+        height: 200px;
+        right: 5%;
+        top: 70%;
+    }
+
+    .content {
+        width: 98%;
+        font-size: 0.85rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="moon"><img src="IMG_20250206_012049-removebg-preview.png" alt="" width="500px"></div>
+        <div class="cat"><img src="cat lover.png" alt="" width="500px" height="500"></div>
+        <div class="content">
+            <h1>TO MISS PERFECT,</h1>
+            <p>They say you can't describe perfection in words, so I wrote you a poem instead </p>
+            <p>In a world so vast, with billions of faces...
+                I found my star, my guiding light...
+                With specs so stylish,which frames your eyes...
+                You're a rare gem, one of a kind...
+A beauty so unique, impossible to find...Your smile is like sunshine on a cloudy day, which makes my day... So gentle and sweet,which
+makes my heart skip a heartbeat...You have the perfect height crafted by god's arms ,A treasure so precious, with endless charms...
+</p>
+            <p>I still remember the time I saw u, we were in the physics lab dark room. You approached and asked about the PPT of ES -1, and at that time i was like, "Damn, she is soooo gooodddd !!!!!!"</p>
+            <p>Later on, that feeling rapidly touched the skies as we spent more time together, like :- </p>
+            <p>While Submission (ig 30th april 2024)(with that black top and white strips shirt)</p>
+            <p>Coffee with you (though you didn't have one)</p>
+            <p>Gift (30th sept 2024)(same black and white combo)</p>
+            <p>Late-night talks with huge roasting and some serious talks</p>
+            <p>Bxe Project (10th April 2024)(green + yelloish parrot color top)</p>
+            <p>Payal ! !,Seriously you're like the moon to the empty night sky, always shining, always beautiful .Time stood still whenever my eyes saw u ,without even noticing that I've fallen for u ,before i knew.</p>
+        </div>
+        <div class="cloud">
+            <img src="WhatsApp_Image_2025-02-07_at_00.48.30_5a54c978-removebg-preview.png" alt="">
+        </div>
+        <div id="stars"></div>
+    </div>
+
+    <script>
+        const starsContainer = document.getElementById('stars');
+        const numStars = 200;
+
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.width = `${Math.random() * 2 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.animationDelay = `${Math.random() * 2}s`; // Random delay for each star
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
